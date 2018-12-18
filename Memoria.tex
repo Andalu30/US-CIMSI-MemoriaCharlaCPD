@@ -27,30 +27,60 @@ Juan Arteaga Carmona\\
 
 
 \section{Temas expuestos en la charla}
-\subsection{Introducción}
 \subsection{Seguridad}
+Una vez dada por comenzada la charla, Domingo, el ponente nos explicó detalladamente el plan de autoprotección de las Instalacciones y del edificio. Asi mismo tambien se comenzo a hablar un poco mas en concreto sobre los mecanismos que tiene el CPD para protegerse de posibles incendios.
 \subsubsection{Sistemas de extinción de incendios}
-Inundación de $CO_2$
+El sistema de protección del CPD ante un incendio es mediante inundación de $CO_2$, un método barato que consiste en llenar por completo la habitacion de dióxido de carbono, lo que hace que una posible combustión se vea neutralizada al no haber en la atmosfera suficiente oxígeno. El CPD consta de varias salidas de $CO_2$, una en el techo y otra en el suelo, lo que permite una mayor rapidez al neutralizar un posible fuego.\\
+Este sistema, sin embargo, tiene un gran inconveniente. Al llenarse la habitación por completo de $CO_2$ nos será imposible respirar. Por esto, los sistemas antiincendios se activarán 3 minutos despues de detectar un incendio, dando asi, tiempo a la evacuación de las personas.\\
+Domingo tambien nos comentó como hay otras posibles soluciones a la contención de un incendio. Una de ellas sería agua nebulizada, pero debido a que se trabaja con PCs y el agua impura es un conductor eléctrico no es una buena opción ya que se dañarian los equipos.\\
+Otras opciones serian gases Novex 1230, que mantienen un mínimo de oxígeno en la habitación, permitiendo que cualquier persona atrapada en la sala de maquinas siga respirando. Esta opción ha sido descartada debido al precio de la misma\\
+
 
 \subsection{Instalacciones}
+A continuación se nos explicó la estructura de las instalacciones del CPD. Se pueden separar tres zonas distintas. De izquierda a derecha seran:  La zona histórica/Housing, la zona de pasillo frio y caliente y el CUBO 01.
 \subsubsection{Zona histórica/Housing}
+En la parte derecha del CPD nos encontramos con unas mesas y varios PCs, los cuales la mayoria se encuentran en housing. Estos equipos nisiquiera estan refrigerados y la intención es que poco a poco se vayan retirando del CPD.
 \subsubsection{Zona de pasillo frio y caliente}
+La siguiente zona se encuentra separada por unas cortinas de plastico, que ayudan a regular la temperatura. Segun nos comenta Domingo, la temperatura se ha visto reducida 2ºC lo que permite un gran ahorro energetico.\\
+En esta zona nos encontramos con distintos equipos entre los que destacan el cluster de supercomputación en housing de la facultad de Fisica en el que se realizan simulaciones asi como Dircom, que como veremos en el apartado \ref{sec:red} es el nucleo central de las comunicaciones de la universidad.
+
 \subsubsection{CUBO 01}
+La tercera y última parte es el llamado CUBO 01. Un pasillo frio cerrado que almacena en su interior distintos equipos. Al mantener un flujo de aire frio en su interior se mejora la eficiencia de los equipos. Destacar tambien que el cableado del cubo se realiza por la parte de arriba, lo que permite que no haya obstaculos para el aire que fluye bajo el suelo tecnico.
 
 \subsection{Refrigeración}
+El CPD cuenta con 5 equipos de refrigeración que mantienen la sala a una 24ºC. Además tambien cuenta con 4 equipos de apoyo situados en el techo que se activan si alguno de los principales falla para, de esta forma, poder dar un servicio minimo sin problemas.\\
+Las previsiones son que en el futuro el CUBO se adapte para soportar una nueva solución de refrigeración como `Inline cooling' pero, teniendo en cuenta que este se sobredimensionó y que aun queda mucho espacio dentro no supone una prioridad.
 
 \subsection{Alimentación eléctrica}
+El sistema de alimentación de las instalacciones es simple, todo lo simple que puede ser para un centro de datos, claro esta.\\
+Todos los equipos tienen fuentes de alimentación redundantes conectadas a dos circuitos distintos, asi mismo, estos dos circuitos estan conectados a un sistema de alimentacion ininterrumpida que a su vez esta conectado a la red eléctrica y a un generador.\\
+En el caso de que se produzca un corte de luz, el SAI automáticamente se hace cargo del suministro de corriente, pero debido a que la duración de las baterias es de aproximadamente 20 minutos, el generador se pondrá en marcha para apoyar a las baterias. Si ocurriese algun problema, el SAI tiene el tiempo justo para que los equipos realizen una parada sin perder la información.\\
+Si no tenemos en cuenta la parada inesperada que sufrió el centro en Septiembre, Domingo nos asegura que el CPD se trataria de un Tier 3.\\
+Tambien se puede destacar que el periodo de menos consumo electrico es entre Julio/Agosto, algo sorprendente ya que se deberia consumir mas por la refrigeración, pero razonable ya que justo en esos meses son las vacaciones de alumnos y personal docente.
 
 \subsection{Monitorización}
 \subsubsection{Monitorización de sistemas}
+La monitorización de los sistemas se realiza con el software Nagios, el mismo que se ha estudiado en las practicas de las asignaturas.
 \subsubsection{Control de acceso al CPD}
+El control de acceso al CPD se realiza con un lector de tarjetas que, teniendo en cuenta los permisos que posea la persona, dejará o no acceder al recinto. Asi mismo, como opción de fallback estos lectores de tarjetas tambien tienen un teclado numérico que daría acceso al introducir un pin numérico.
 
 \subsection{Hardware del sistema}
+Respecto al hardware de los dispositivos que forman el datacenter nos encontramos se pueden destacar dos.
+El primero de ellos son equipos IBM Bladecenter que se quieren ir retirando debido a que poseen un SPOF, la placa trasera de estos equipos.
+El segundo son los equipos de forma tradicional. Evidentemente, todos se encuentran virtualizados mediante VmWare y se conectan a almacenamiento en red.\\
+Respecto al hardware interno de los equipos no se nos dio mucho información, pero sabemos que la maquina menos potente del datacenter cuenta con al menos 75GB de RAM, y que las mas potentes cuentan con 256GB de RAM y dos procesadores de 20 nucleos cada uno.
 
-\subsection{Red de la Universidad de Sevilla}
+\subsection{Red de la Universidad de Sevilla}\label{sec:red}
+En cuanto a la red de la Universidad se puede destacar que todo el tráfico de esta pasa por el enrutamiento central, el Dircom.\\
+Este mismo equipo en cuentra conectado al anillo de fibra óptica que conecta practicamente todas las sedes de la universidad. En particular, se puede destacar que hay una conexion directa de dos cables agregados de 20Gbps (40Gbps) entre el CPD, el CICA y la escuela técnica superior de Ingeniería Informática. Estas conexiones son importantes ya que en la escuela se encuentran los replicados de los sistemas de redes y en el CICA se encuentran los duplicados del almacenamiento, por lo tanto una buena conexión a estas localizaciones es mas que importante.\\
+Varias sedes de la universidad estaban conectadas mediante enlace WiMAX anteriormente, pero gracias a un consorcio de la Universidad con la empresa Telefónica ahora se encuentran conectadas con fibra óptica que se encontraba en deshuso.\\
 
 \subsection{Sesión de QA}
-
+Durante el periodo de preguntas y respuestas se preguntaron varias preguntas que son bastante interesantes, de las cuales se puede extraer la siguiente información.\\
+El CPD no cuenta con sistemas de paravirtualización, todo corre sobre el hipervisor de VmWare pero si se estan realizando algunas pruebas para ir incorporando sistemas como Docker poco a poco.\\
+En la escuela de Informática se encuentra la replicación de las comunicaciones, pero se esta intentando replicar las maquinas suficientes como para ofrecer servicios mínimos.\\
+En el caso de que se tenga que hacer una restauración desde las copias de seguridad, esta se haría en aproximadamente unas 10 horas.\\
+Todas las conexiones de los equipos se realizan mediante 802.1q.
 
 %----------------------------------------
 \section{Temas expuestos en la charla que no se abordan en la asignatura}
